@@ -1,5 +1,6 @@
 package com.example.Foody.Domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,9 +16,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * @author Mahesvaran Ashokan
+ *
+ */
 @Entity
 @Table(name = "resturant")
-public class Resturant {
+public class Resturant implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +39,7 @@ public class Resturant {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "resturant")
-	private Set<FoodType> foodTypes = new HashSet<>();
+	private Set<Food> food = new HashSet<>();
 
 	@Column()
 	private double rating;
@@ -42,12 +52,12 @@ public class Resturant {
 		this.name = name;
 	}
 
-	public Set<FoodType> getFoodTypes() {
-		return foodTypes;
+	public Set<Food> getFoods() {
+		return food;
 	}
 
-	public void setFoodTypes(Set<FoodType> foodTypes) {
-		this.foodTypes = foodTypes;
+	public void setFood(Set<Food> foods) {
+		this.food = foods;
 	}
 
 	public double getRating() {
@@ -55,7 +65,7 @@ public class Resturant {
 	}
 
 	public void setRating(double rating) {
-		this.rating = Math.round(getRating() + rating / 2.0);
+		this.rating = (getRating() + rating) / 2.0;
 	}
 
 }

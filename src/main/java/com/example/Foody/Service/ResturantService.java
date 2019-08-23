@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.Foody.Domain.Resturant;
 
+/**
+ * @author Mahesvaran Ashokan
+ *
+ */
 @Service
 public interface ResturantService {
 
@@ -27,7 +31,7 @@ public interface ResturantService {
 	 * @param rating
 	 * @return
 	 */
-	public Integer saveRating(Integer resturantId, double rating);
+	public String saveRating(Long resturantId, double rating);
 
 	/**
 	 * @return
